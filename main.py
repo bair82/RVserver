@@ -135,8 +135,8 @@ async def judge_impression(
 async def health_check():
     return {"status": "healthy"}
 
+# Render specific: bind to PORT environment variable
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
-
-# requirements.txt
-
+    import uvicorn
+    port = int(os.environ.get("PORT", 10000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)
